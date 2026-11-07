@@ -12,46 +12,57 @@
  .wrap{overflow-x:auto}
 </style></head><body>
 <h1>Bangladesh Weather</h1>
-<p class="muted">Updated 08 Nov 2026, 12:17 AM (Dhaka time) · Data: Open-Meteo · Summary: openrouter/free</p>
+<p class="muted">Updated 08 Nov 2026, 04:04 AM (Dhaka time) · Data: Open-Meteo · Summary: openrouter/free</p>
 <div class="card"><strong>Summary</strong><p>1.  **Analyze the Request:**
-    *   Input: Current weather data for Bangladesh's 8 divisional cities (Dhaka, Chattogram, Khulna, Rajshahi, Barishal, Sylhet, Rangpur, Mymensingh).
+    *   Input: Weather data for 8 cities in Bangladesh (Dhaka, Chattogram, Khulna, Rajshahi, Barishal, Sylhet, Rangpur, Mymensingh). Includes Temperature (°C), Humidity (%), Rain (mm), Wind (km/h), Sky.
     *   Task: Summarize in 2-3 short lines.
-    *   Constraints: Overall condition, hottest and coolest city, any rain. Use *only* these numbers (meaning no extra descriptive words, stick to the numerical facts provided, or at least focus the summary on the numbers while keeping it concise). Actually, "Use only these numbers" probably means don't add fluff, just state the facts derived from the table. Wait, "Use only these numbers" might mean just output the numbers? No, "Summarise in 2-3 short lines: overall condition, hottest and coolest city, any rain. Use only these numbers. Reply with the summary only." I will formulate sentences that highlight the temperature extremes, humidity/rain conditions, etc., strictly using the provided values.
-    *   Line 1: Overall condition & Rain info (Rain is 0 mm everywhere).
-    *   Line 2: Hottest and coolest city with temps.
+    *   Constraints:
+        *   Overall condition.
+        *   Hottest and coolest city.
+        *   Any rain.
+        *   Use *only* these numbers (meaning no extra conversational text, and stick strictly to the provided data, though "overall condition" might require words like "clear", "dry", etc., since numbers alone don't convey condition, or maybe it means just format using the provided numbers). Wait, "Use only these numbers" usually means don't invent new numbers, but I can use the numbers provided. Let's look at the exact wording: "Use only these numbers. Reply with the summary only." This could mean "format your response strictly using the numerical data provided" or "don't add any outside information". I will make sure not to include any outside information. The prompt says "Summarise... overall condition, hottest and coolest city, any rain. Use only these numbers." I should extract the relevant numbers for the hottest/coolest cities and the rain amount.
+    *   Output format: 2-3 short lines, summary only.
 
 2.  **Extract Data:**
-    *   Hottest City: Chattogram (25.4 °C)
-    *   Coolest City: Rangpur (21.7 °C)
-    *   Rain: 0.0 mm in all cities (No rain)
-    *   Sky: Clear in all cities
-    *   Humidity ranges from 75% to 88%, Wind 0.7 to 8.0 km/h.
+    *   Hottest City: Chattogram (23.8 °C) -> Wait, let me double check all temps.
+        *   Dhaka: 23.2
+        *   Chattogram: 23.8 (Hottest)
+        *   Khulna: 22.2
+        *   Rajshahi: 21.0
+        *   Barishal: 24.0 (Wait! 24.0 is higher than 23.8!) Let me re-read the table carefully.
+            *   Dhaka 23.2
+            *   Chattogram 23.8
+            *   Khulna 22.2
+            *   Rajshahi 21.0
+            *   Barishal 24.0 (Coolest so far)
+            *   Sylhet 23.1
+            *   Rangpur 20.7
+            *   Mymensingh 21.6
+        *   Hottest: Barishal (24.0 °C)
+        *   Coolest: Rajshahi (21.0 °C)
+    *   Rain: All 0.0 mm. No rain anywhere.
+    *   Overall condition: Clear across all cities. High humidity (83-92%), but clear skies and no rain.
 
-3.  **Draft Summary (2-3 lines):**
-    *   All cities are clear with zero rainfall. Hottest is Chattogram at 25.4 °C; coolest is Rangpur at 21.7 °C. Humidity ranges from 75% to 88%; wind speeds range from 0.7 to 8.0 km/h.
-    *   Let's refine to be as concise as possible while satisfying "overall condition, hottest and coolest city, any rain".
-    *   Line 1: Overall condition: Clear skies and zero rainfall across all divisions.
-    *   Line 2: Hottest: Chattogram (25.4 °C); Coolest: Rangpur (21.7 °C).
-    *   Line 3: Humidity ranges 75%-88%; wind speeds 0.7-8.0 km/h. (Maybe skip this if not strictly asked, but adds detail). The prompt asks for "overall condition, hottest and coolest city, any rain". Let's stick closely to those requested elements.
+3.  **Drafting the Summary:**
+    *   Line 1: Clear skies and no rain across all divisions.
+    *   Line 2: Hottest city is Barishal at 24.0°C; coolest is Rajshahi at 21.0°C.
+    *   Or combine into fewer lines if needed, but prompt asks for "2-3 short lines".
+    *   Let's refine to ensure I strictly use the provided numbers and don't add any outside info.
+    *   Line 1: Clear sky, no rain (0.0 mm) across all 8 cities.
+    *   Line 2: Hottest is Barishal (24.0°C), coolest is Rajshahi (21.0°C).
 
-4.  **Refine Draft:**
-    *   Line 1: All 8 divisional cities have clear skies and 0.0 mm of rainfall.
-    *   Line 2: Hottest city is Chattogram at 25.4 °C; coolest is Rangpur at 21.7 °C.
-    *   Is this 2 lines? Yes.
-    *   Does it meet "Use only these numbers"? It uses the specific numbers provided (0.0, 25.4, 21.7, all names and temps).
+4.  **Checking constraints:**
+    *   2-3 short lines? Yes.
+    *   Overall condition? "Clear", "no rain", "high humidity".
+    *   Hottest and coolest city? Barishal & Rajshahi.
+    *   Any rain? 0.0 mm / none.
+    *   Use only these numbers? Yes, explicitly referencing the numbers provided (24.0, 21.0, 0.0).
+    *   Reply with the summary only? Yes, no intro/outro text.
 
 5.  **Final Polish:**
-    Line 1: Clear skies and 0.0 mm of rainfall across all 8 cities.
-    Line 2: Hottest: Chattogram (25.4 °C); Coolest: Rangpur (21.7 °C).
-
-    Let's check the prompt again: "Summarise in 2-3 short lines: overall condition, hottest and coolest city, any rain. Use only these numbers. Reply with the summary only."
-    Line 1: Overall condition: Clear skies and zero rainfall in all 8 divisions.
-    Line 2: Hottest city is Chattogram at 25.4 °C; coolest is Rangpur at 21.7 °C.
-    Line 3: Wind speeds range from 0.7 to 8.0 km/h. (Optional but safe).
-
-    Wait, "Use only these numbers" could be interpreted very strictly. Does it mean I should *only* output the numbers? "Summarise... Reply with the summary only." A summary inherently requires some text to convey "hottest and coolest city". So text + numbers is expected.
-    I will provide:
-    Overall: Clear and zero rainfall</p></div>
+    Clear skies and 0.0 mm of rain across all divisions.
+    Hottest city is Barishal at 24.0°C, coolest is Rajshahi at 21.0°C.
+    (This is exactly </p></div>
 <div class="card wrap"><table class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -66,66 +77,66 @@
   <tbody>
     <tr>
       <td>Dhaka</td>
-      <td>24.3</td>
-      <td>75</td>
+      <td>23.2</td>
+      <td>83</td>
       <td>0.0</td>
-      <td>7.4</td>
+      <td>7.7</td>
       <td>Clear</td>
     </tr>
     <tr>
       <td>Chattogram</td>
-      <td>25.4</td>
-      <td>78</td>
+      <td>23.8</td>
+      <td>83</td>
       <td>0.0</td>
-      <td>8.0</td>
+      <td>6.6</td>
       <td>Clear</td>
     </tr>
     <tr>
       <td>Khulna</td>
-      <td>22.6</td>
-      <td>83</td>
+      <td>22.2</td>
+      <td>87</td>
       <td>0.0</td>
-      <td>7.5</td>
+      <td>8.1</td>
       <td>Clear</td>
     </tr>
     <tr>
       <td>Rajshahi</td>
-      <td>21.9</td>
+      <td>21.0</td>
       <td>85</td>
       <td>0.0</td>
-      <td>6.5</td>
+      <td>6.2</td>
       <td>Clear</td>
     </tr>
     <tr>
       <td>Barishal</td>
-      <td>24.2</td>
-      <td>82</td>
+      <td>24.0</td>
+      <td>83</td>
       <td>0.0</td>
-      <td>7.6</td>
+      <td>7.1</td>
       <td>Clear</td>
     </tr>
     <tr>
       <td>Sylhet</td>
-      <td>24.7</td>
-      <td>79</td>
+      <td>23.1</td>
+      <td>88</td>
       <td>0.0</td>
-      <td>0.7</td>
+      <td>3.4</td>
       <td>Clear</td>
     </tr>
     <tr>
       <td>Rangpur</td>
-      <td>21.7</td>
-      <td>88</td>
+      <td>20.7</td>
+      <td>90</td>
       <td>0.0</td>
-      <td>4.9</td>
+      <td>5.3</td>
       <td>Clear</td>
     </tr>
     <tr>
       <td>Mymensingh</td>
-      <td>22.8</td>
-      <td>85</td>
+      <td>21.6</td>
+      <td>92</td>
       <td>0.0</td>
-      <td>7.3</td>
+      <td>4.7</td>
       <td>Clear</td>
     </tr>
   </tbody>
